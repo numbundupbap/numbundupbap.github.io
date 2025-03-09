@@ -44,3 +44,13 @@ document.querySelectorAll('.link-item').forEach((e) => {
         }
     });
 });
+
+let project = {
+    "dutShortcut": "https://github.com/numbundupbap/dutscriptShortcut/tree/main", 
+};
+
+document.querySelectorAll('.project-item').forEach((e) => {
+    e.addEventListener('click', (s) => {
+        window.open(project[s.target.classList[1]])
+    });
+});
