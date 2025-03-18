@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>망겜</title>
+    <link href="../css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="main">
+        <div id="score">0</div>
+        <div id="red-area"></div>
+        <div id="yellow-area"></div>
+        <div id="green-area"></div>
+        <div id="blue-area"></div>
+        <div id="safe-area"></div>
+        <div id="player" class="object" style="left: 50px; bottom: 50px;"></div>
+    </div>
+    <div class="screen">
+        <div class="start">
+            <div>피하기 망겜</div>
+            <p>0.5초마다 색을 가진 적이 생성됩니다<br>적들은 같은 색에 닿으면 죽습니다<br>적들에게서 도망치며 살아남으세요!</p>
+            <button onclick="start()" class="startbtn">시작하기</button>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>
