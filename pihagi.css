@@ -1,0 +1,213 @@
+@import './reset.css';
+
+@font-face {
+    font-family: 'Gmarket Sans';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: bold;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'Gmarket Sans Medium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: medium;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+#main {
+    width: 98vw;
+    height: 95vh;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    --main-height: 95vh;
+}
+
+#red-area {
+    float: left;
+    width: 50%;
+    height: 50%;
+    background-color: rgb(255, 140, 140);
+    border-top-left-radius: 10px;
+    border: none;
+}
+
+#yellow-area {
+    float: left;
+    width: 50%;
+    height: 50%;
+    background-color: rgb(230, 226, 123);
+    border-top-right-radius: 10px;
+    border: none;
+}
+
+#green-area {
+    float: left;
+    width: 50%;
+    height: 50%;
+    background-color: rgb(132, 209, 153);
+    border-bottom-left-radius: 10px;
+    border: none;
+}
+
+#blue-area {
+    float:left;
+    width: 50%;
+    height: 50%;
+    background-color: rgb(169, 166, 255);
+    border-bottom-right-radius: 10px;
+    border: none;
+}
+
+#safe-area {
+    position: absolute;
+    left: 25%;
+    bottom: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: rgb(197, 197, 197);
+    border: none;
+}
+
+#score {
+    color: rgba(255, 255, 255, 0.427);
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    text-align: center;
+    font-size: calc(var(--main-height) * 0.2);
+    font-family: 'Gmarket Sans';
+    z-index: 2;
+    user-select: none;
+}
+
+.object {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 6px;
+    border: none;
+    z-index: 2;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.375) inset;
+}
+
+#player {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    z-index:999999;
+}
+
+.red {
+    background-color: rgb(255, 65, 65);
+}
+
+.yellow {
+    background-color: rgb(238, 238, 64);
+}
+
+.green {
+    background-color: rgb(72, 198, 72);
+}
+
+.blue {
+    background-color: rgb(56, 56, 255);
+}
+
+@keyframes pung {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.pung {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #f00;
+    border-radius: 50%;
+    animation: pung 1s ease-out forwards;
+}
+
+.screen {
+    position: absolute;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.start {
+    position: absolute;
+    background-color: rgb(57, 57, 57);
+    border-radius: 10px;
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.startbtn {
+    margin-top: 20%;
+    border: solid 2px rgba(144, 144, 144, 0);
+    background-color: rgb(69, 69, 69);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Gmarket Sans Medium';
+    height: 30px;
+    width: 130px;
+    transition: border 0.2s ease;
+    outline:none;
+}
+
+.startbtn:hover {
+    border: solid 2px rgba(144, 144, 144, 1);
+}
+
+.start > p {
+    margin-top: 20%;
+    color: white;
+    text-align: center;
+    font-family: 'Pretendard-Regular';
+}
+
+.start > div {
+    font-size: large;
+    color: white;
+    text-align: center;
+    font-family: 'Gmarket Sans';
+}
+
+.invisible {
+    opacity: 0%;
+}
