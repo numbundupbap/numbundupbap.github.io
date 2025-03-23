@@ -47,10 +47,11 @@ document.querySelectorAll('.link-item').forEach((e) => {
 
 let project = {
     "dutShortcut": "https://github.com/numbundupbap/dutscriptShortcut/tree/main", 
+    "pihagi": "https://numbundupbap.github.io/pihagi"
 };
 
 document.querySelectorAll('.project-item').forEach((e) => {
     e.addEventListener('click', (s) => {
-        window.open(project[s.target.classList[1]])
+        window.open(project[e.classList[1]])
     });
 });
