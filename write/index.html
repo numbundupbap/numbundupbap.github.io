@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>백준 2887 - 행성 터널</title>
-    <link rel="stylesheet" href="./css/write.css">
+    <title>넘부글</title>
+    <link rel="stylesheet" href="././css/write.css">
     
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
@@ -50,6 +50,7 @@
             const output = marked.parse(input);
             document.getElementById('markdown-output').innerHTML = output;
             document.getElementById('title').innerHTML = title;
+            document.title = title;
             document.querySelectorAll('#markdown-output > p > a').forEach((e) => {
                 e.setAttribute('target', '_blank');
             })
