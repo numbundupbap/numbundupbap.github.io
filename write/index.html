@@ -54,7 +54,6 @@
                 e.setAttribute('target', '_blank');
             })
 
-            // 코드 블록에 하이라이트 적용
             document.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightElement(block);
             });
@@ -67,7 +66,7 @@
         }
 
         renderMarkdown()
-        
+
         window.addEventListener("hashchange", updateContent);
     </script>
 </body>
