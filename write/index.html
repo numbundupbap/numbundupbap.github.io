@@ -23,7 +23,8 @@
 
     <script>
         async function renderMarkdown() {
-            const docnum = window.location.hash.substring(1);
+            const urlParams = new URLSearchParams(window.location.search);
+            const docnum = urlParams.get('n');
             const API_KEY = "AIzaSyBKONMUmcSZUu1xqG7eHXgDEBvBxXV_0sY"; 
             const SPREADSHEET_ID = "1L74HFfM3AUD8yeyzELDRJSnABAlcBy6aZTBvt-LPcMo";
             const RANGE = "blog"; 
