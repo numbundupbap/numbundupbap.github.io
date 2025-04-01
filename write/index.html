@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>넘부글</title>
+    <title>목록</title>
     <link rel="stylesheet" href="../css/write.css">
     
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -19,56 +19,85 @@
 </head>
 <body>
     <div id="title"></div>
+    <div id="des"></div>
     <div id="markdown-output"></div>
 
     <script>
         async function renderMarkdown() {
             const urlParams = new URLSearchParams(window.location.search);
             const docnum = urlParams.get('n');
+            let input;
+            let title;
             const API_KEY = "AIzaSyBKONMUmcSZUu1xqG7eHXgDEBvBxXV_0sY"; 
             const SPREADSHEET_ID = "1L74HFfM3AUD8yeyzELDRJSnABAlcBy6aZTBvt-LPcMo";
             const RANGE = "blog"; 
-            console.log(`Load ${docnum} document.`);
+            if (docnum !== null) {
+                console.log(`Load ${docnum} document.`);
 
-            let input;
-            let title;
-            await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.values.length > docnum) {
-                    input = data.values[docnum][1];
-                    title = data.values[docnum][0];
-                } else {
-                    throw e;
-                }
-            })
-            .catch(error => {
-                input = "## 데이터를 불러오지 못했어요. \n\n새로고침해도 해결되지 않는다면 `numbundupbap@gmail.com`으로 문의해주세요.";
-                title = "";
-            });
-            
-            const output = marked.parse(input);
-            document.getElementById('markdown-output').innerHTML = output;
-            document.getElementById('title').innerHTML = title;
-            document.title = title;
-            document.querySelectorAll('#markdown-output > p > a').forEach((e) => {
-                e.setAttribute('target', '_blank');
-            })
+                await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.values.length > docnum) {
+                        input = data.values[docnum][1];
+                        title = data.values[docnum][0];
+                    } else {
+                        throw e;
+                    }
+                })
+                .catch(error => {
+                    input = "## 데이터를 불러오지 못했어요. \n\n새로고침해도 해결되지 않는다면 `numbundupbap@gmail.com`으로 문의해주세요.";
+                    title = "";
+                });
+                
+                const output = marked.parse(input);
+                document.getElementById('markdown-output').innerHTML = output;
+                document.getElementById('title').innerHTML = title;
+                document.title = title;
+                document.querySelectorAll('#markdown-output > p > a').forEach((e) => {
+                    e.setAttribute('target', '_blank');
+                })
 
-            document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-            });
-            renderMathInElement(document.getElementById("markdown-output"), {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true }, 
-                    { left: "$", right: "$", display: false } 
-                ]
-            });
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+                renderMathInElement(document.getElementById("markdown-output"), {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true }, 
+                        { left: "$", right: "$", display: false } 
+                    ]
+                });
+            } else {
+                let elem = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`)
+                .then(response => response.json())
+                .then(data => data)
+                .catch(error => {
+                    input = "## 데이터를 불러오지 못했어요. \n\n새로고침해도 해결되지 않는다면 `numbundupbap@gmail.com`으로 문의해주세요.";
+                    title = "";
+                    
+                    const output = marked.parse(input);
+                    document.getElementById('markdown-output').innerHTML = output;
+                    document.getElementById('title').innerHTML = title;
+                    document.title = title;
+                    document.querySelectorAll('#markdown-output > p > a').forEach((e) => {
+                        e.setAttribute('target', '_blank');
+                    })
+                    return;
+                });
+
+                document.getElementById('title').innerHTML = '목록';
+
+                elem.values.forEach((e, i) => {
+                    if (i !== 0) {
+                        let a = document.createElement('a')
+                        a.href = `https://numbundupbap.github.io/write/?n=${i}`
+                        a.innerHTML = e[0];
+                        document.querySelector('#des').appendChild(a);
+                    }
+                })
+            }
         }
 
         renderMarkdown()
-
-        window.addEventListener("hashchange", updateContent);
     </script>
 </body>
 </html>

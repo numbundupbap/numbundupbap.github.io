@@ -36,6 +36,27 @@ code {
     padding: 0 1rem;
 }
 
+#des {
+    display: flex;
+    flex-direction: column;
+    font-family: "Pretendard Variable";
+    padding: 1rem;
+}
+
+#des > a {
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    margin-left: 0;
+    display: inline-block;
+    transition: margin-left ease-in-out 0.3s , 
+                color ease-in-out 0.3s;
+}
+
+#des > a:hover {
+    color: rgb(24, 196, 161);
+    margin-left: 10px;
+}
+
 #title {
     color: white;
     font-family: 'Pretendard Variable';
@@ -44,7 +65,7 @@ code {
 }
 
 a {
-    color: rgb(94, 161, 255);
+    color: rgb(24, 196, 161);
     text-decoration: none;
 }
 
